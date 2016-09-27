@@ -16,22 +16,14 @@
         http://www.springframework.org/schema/jee/spring-jee.xsd				
 						">
  
- 	<!-- ONDE ESTÃO OS COMPONENTES DO SPRING (EX:@Controller, @Repository, @Service e @Component )-->
 	<context:component-scan base-package="com.eduardo" />
- 
-	<!-- SEM ESSA TAG ELE NÃO RETORNA O JSON -->
 	<mvc:annotation-driven />
- 
-	<!-- SEM ESSA TAG NÃO CARREGA OS CSS/JS -->
 	<mvc:default-servlet-handler/>
  
- 
- 	 <!-- GERENCIAMENTO DO JPA PELO SPRING-->
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">     
-    	<property name="persistenceUnitName" value="PERSISTENCE_UNIT" />	     
+    	<property name="persistenceUnitName" value="crudspring" />	     
  	</bean>
  
- 	 <!-- gerenciamento das transações -->
 	 <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
   		<property name="entityManagerFactory" ref="entityManagerFactory"/>
 	</bean>  
