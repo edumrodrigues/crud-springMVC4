@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.eduardo.model.User;
 
-@Repository("userRepository")
+@Repository
 public class UserRepository {
 
 	@PersistenceContext(type = PersistenceContextType.EXTENDED)
@@ -37,6 +37,7 @@ public class UserRepository {
 		manager.remove(user);
 	}
 
+	@Transactional
 	public List<User> allUsers() {
 		return (List<User>) manager.createQuery("SELECT e FROM User e ORDER BY e.name ", User.class).getResultList();
 	}

@@ -14,7 +14,6 @@ label {
 <script type="text/javascript"
 	src="../resources/js/newUserController.js"></script>
 
-
 </head>
 <body>
 

@@ -1,45 +1,33 @@
-var updateUserControllerApp = angular.module("updateUserControllerApp",
-		[]);
+var updateUserControllerApp = angular.module("updateUserControllerApp", []);
 
 updateUserControllerApp.controller("updateUserController", function($scope, $window, $http) {
-
-	/* DEFININDO O MODELO PARA O NOSSO FORMULÁRIO */
-	$scope.id = null;
-	$scope.name = null;
-	$scope.userName = null;
-	$scope.password = null;
-	$scope.active = null;
+	 $scope.idUser = null;
+	 $scope.name = null;
+	 $scope.userName = null;
+	 $scope.password = null;
+	 $scope.active = null;
+	 var STATUS_OK = 200;
 
 	$scope.updateUser = function() {
-
-		/* DEFINI O OBJETO QUE VAI SER ENVIADO VIA AJAX PELO ANGULARJS */
 		var user = new Object();
-		user.id = $scope.id;
+		user.id = $scope.idUser;
 		user.name = $scope.name;
 		user.userName = $scope.userName;
 		user.password = $scope.password;
 		user.active = $scope.active;
 
-		/* EXECUTA O POST PARA ALTERAR O REGISTRO */
-		var response = $http.post("../update", usuarioModel);
-
+		var response = $http.post(_contextPath+"/user/update", user);
 		response.success(function(data, status, headers, config) {
-			if (data.codigo == 1) {
-				$window.alert(data.message);
-
-				/* REDIRECIONA APÓS ALTERARMOS O REGISTRO */
-				window.location.href = "../users.html";
-
+			if (status === STATUS_OK) {
+				$window.alert("User updated successfuly!");
+				window.location.href = _contextPath+"/user/users.html";
 			} else {
-				/* MOSTRA O ERRO TRATO PELO SPRING (OBJETO ResultadoModel) */
-				$window.alert(data.message);
-
+				$window.alert("Error on update user.");
 			}
 		});
 
 		response.error(function(data, status, headers, config) {
-			/* SE OCORRER ERRO NÃO TRATADO IREMOS MOSTRA EM MENSAGEM */
-			$window.alert(data);
+			$window.alert("Error on update user.");
 		});
 	};
 });

@@ -7,6 +7,9 @@
 
 <script type="text/javascript" src="../resources/js/angular.min.js"></script>
 <script type="text/javascript" src="../resources/js/allUsersController.js"></script>
+<script type="text/javascript">
+    _contextPath = "${pageContext.request.contextPath}";
+</script>
 </head>
 <body>
 	<table ng-controller="allUsersController"  data-ng-init="init()">
@@ -29,7 +32,7 @@
          <td>{{user.userName}}</td>
          <td>{{user.password}}</td>
          <td>{{user.active ? "Yes" : "No"}}</td>
-         <td><a  ng-href="update.html/{{user.id}}" >Edit</a></td>
+         <td><a  ng-href="edit.html/{{user.id}}" >Edit</a></td>
          <td><a href="#" ng-click="deleteUser(user.id)">Delete</a></td>         
        </tr>
      </tbody>
